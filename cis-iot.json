@@ -1,0 +1,157 @@
+[
+    {
+        "id": "e7af7aac76f389cf",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8dace97e4f5041e1",
+        "type": "http request",
+        "z": "e7af7aac76f389cf",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://cis.meetlearn.net/php/getLastTemperature.php?deviceID=1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 450,
+        "y": 580,
+        "wires": [
+            [
+                "21fc455fa4241ba0"
+            ]
+        ]
+    },
+    {
+        "id": "21fc455fa4241ba0",
+        "type": "json",
+        "z": "e7af7aac76f389cf",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 650,
+        "y": 580,
+        "wires": [
+            [
+                "ac41b86ce2c1f6c6",
+                "99621d7198b443cd"
+            ]
+        ]
+    },
+    {
+        "id": "ac41b86ce2c1f6c6",
+        "type": "ui_text",
+        "z": "e7af7aac76f389cf",
+        "group": "bc81c74e97dd90ca",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Last updated",
+        "format": "{{msg.payload.success.timestamp}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 910,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "4c4e0084d7c612f9",
+        "type": "ui_gauge",
+        "z": "e7af7aac76f389cf",
+        "name": "",
+        "group": "bc81c74e97dd90ca",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1070,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "5339e9dc9d600bbb",
+        "type": "inject",
+        "z": "e7af7aac76f389cf",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 580,
+        "wires": [
+            [
+                "8dace97e4f5041e1"
+            ]
+        ]
+    },
+    {
+        "id": "99621d7198b443cd",
+        "type": "function",
+        "z": "e7af7aac76f389cf",
+        "name": "",
+        "func": "msg.payload = msg.payload.success.temperature;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 620,
+        "wires": [
+            [
+                "4c4e0084d7c612f9"
+            ]
+        ]
+    },
+    {
+        "id": "bc81c74e97dd90ca",
+        "type": "ui_group",
+        "name": "Device Info",
+        "tab": "93efefe04a79285f",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "93efefe04a79285f",
+        "type": "ui_tab",
+        "name": "CIS IoT Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
