@@ -2,3 +2,4 @@
 .config.*
 *.backup
 /lib
+settings.js
