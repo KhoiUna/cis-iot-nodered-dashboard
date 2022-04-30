@@ -133,7 +133,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "https://cis.meetlearn.net/php/getLastTemperature.php?deviceID=1",
+        "url": "https://iotdashboard.khoiuna.info/php/getLastTemperature.php?deviceID=1",
         "tls": "",
         "persist": false,
         "proxy": "",
